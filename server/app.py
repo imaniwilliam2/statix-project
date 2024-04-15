@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request
+from flask import request, make_response
 from flask_restful import Resource
 
 # Local imports
@@ -13,6 +13,14 @@ from models import Player
 
 
 # Views go here!
+class AllPlayers(Resource):
+
+    def get(self): 
+        rb = [player.to_dict() for player in Player.query.all()]
+        return make_response(rb, 200)
+    
+api.add_resource(AllPlayers, '/players')
+
 
 @app.route('/')
 def index():

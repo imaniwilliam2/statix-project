@@ -1,8 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+// import { Outlet } from "react-router-dom";
+
+import NavBar from "./NavBar";
+import { Outlet } from "react-router-dom";
+
+
 
 function App() {
-  return <h1>Project Client</h1>;
+
+  const [players, setPlayers] = useState([])
+
+  useEffect(() => {
+    fetch('/players')
+    .then(res => res.json())
+    .then(playersData => setPlayers(playersData))
+  }, [])
+
+  
+  return (
+    <div>
+      <NavBar />
+      <Outlet context={{
+        players: players
+      }}/>
+    </div>
+    
+  )
+
+
 }
 
 export default App;
