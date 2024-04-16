@@ -20,9 +20,7 @@ class Player(db.Model, SerializerMixin):
     position = db.Column(db.String, nullable=False)
     favorite = db.Column(db.Boolean, default=False)
 
-
-#     team = db.relationship('Team', back_populates='players')
-#     stats = db.relationship('PlayerStats', back_populates = 'player')
+    stats = db.relationship('PlayerStats', back_populates = 'player')
 
     @property
     def serialize(self):
@@ -69,8 +67,7 @@ class Team(db.Model, SerializerMixin):
     favorite = db.Column(db.Boolean, default=False)
 
 
-    # players = db.relationship('Player', back_populates='team')
-    # stats = db.relationship('TeamStats', back_populates = 'team')
+    stats = db.relationship('TeamStats', back_populates = 'team')
 
 
     @property
@@ -106,6 +103,21 @@ class TeamStats(db.Model, SerializerMixin):
 
     team_id = db.Column(db.Integer, db.ForeignKey('teams.id'))
 
+    teams = db.relationship("Team", back_populates = "stats")
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'wins': self.wins,
+            'loses': self.loses,
+            'cstanding': self.cstanding,
+            'points': self.points,
+            'assists': self.assists,
+            'rebounds': self.rebounds,
+            'team_id': self.team_id
+        }
+
     @validates('team_id')
     def validate_id(self, key, value):
         if not value:
@@ -130,6 +142,26 @@ class PlayerStats(db.Model, SerializerMixin):
     threepercentage = db.Column(db.Float, nullable=False)
 
     player_id = db.Column(db.Integer, db.ForeignKey('players.id'))
+
+    players = db.relationship("Player", back_populates = "stats")
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'gp': self.gp,
+            'minpg': self.minpg,
+            'rebpg': self.rebpg,
+            'ppg': self.ppg,
+            'apg': self.apg,
+            'spg': self.spg,
+            'bpg': self.bpg,
+            'tpg': self.tpg,
+            'fgpercentage': self.fgpercentage,
+            'threepercentage': self.threepercentage,
+            'player_id': self.player_id
+        }
+
 
     @validates('player_id', 'team_id')
     def validate_id(self, key, value):
