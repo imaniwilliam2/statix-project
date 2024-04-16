@@ -19,6 +19,32 @@ class AllPlayers(Resource):
         rb = [player.to_dict() for player in Player.query.all()]
         return make_response(rb, 200)
     
+    def post(self):
+        try:
+            new_player = Player(
+            name= request.json.get('name'),
+            height= request.json.get('height'),
+            weight= request.json.get('weight'),
+            team= request.json.get('team'),
+            number= request.json.get('number'),
+            image= request.json.get('image'),
+            birthday= request.json.get('birthday'),
+            bio= request.json.get('bio'),
+            drafted= request.json.get('drafted'),
+            postion= request.json.get('position'),
+            favorite= request.json.get('favorite')
+            )
+            db.session.add(new_player)
+            db.session.commit()
+            response_body = new_player.to_dict()
+            return make_response(response_body, 201)
+        except:
+            response_body = {
+                "error": "Player must have an completed all inputs!"
+            }
+            return make_response(response_body, 400)
+        
+    
 api.add_resource(AllPlayers, '/players')
 
 class AllTeams(Resource):
@@ -28,6 +54,7 @@ class AllTeams(Resource):
         return make_response(rb, 200)
     
 api.add_resource(AllTeams, '/teams')
+
 
 class PlayerByID(Resource):
     def delete(self, id):

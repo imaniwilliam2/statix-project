@@ -37,6 +37,19 @@ function App() {
       }
     })
   }
+
+  function addPlayer(newPlayerData){
+    fetch('/players', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(newPlayerData)
+    })
+    .then(response => response.json())
+    .then(newPlayerData => setPlayers([...players, newPlayerData]))
+  }
   
   return (
     <div>
@@ -44,7 +57,8 @@ function App() {
       <Outlet context={{
         players: players,
         teams: teams,
-        deletePlayer: deletePlayer
+        deletePlayer: deletePlayer,
+        addPlayer: addPlayer
       }}/>
     </div>
     

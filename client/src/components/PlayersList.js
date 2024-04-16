@@ -1,5 +1,8 @@
 import { useOutletContext } from "react-router-dom"
 import Player from "./Player"
+// import NewPlayerForm from "./NewPlayerForm";
+import { Link } from "react-router-dom";
+
 
 
 function PlayersList(){
@@ -10,7 +13,10 @@ function PlayersList(){
         return <Player key={player.id} player={player} deletePlayer={deletePlayer} players={players}/>
     })
     return (
-        <ul>{playerComponents}</ul>
+        <>
+            <Link className="form" to={"/players-form"}>Add A Player</Link>
+            <ul>{playerComponents}</ul>
+        </>
     )
 }
 

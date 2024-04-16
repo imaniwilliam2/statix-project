@@ -13,6 +13,7 @@ import "./index.css";
 import { createRoot } from "react-dom/client";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import NewPlayerForm from "./components/NewPlayerForm";
 
 
 
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
                 path:"/my-team",
                 element: <MyTeam />
 
+            },
+            {
+                path: "/players-form",
+                element: <NewPlayerForm />
             }
         ]
     }

@@ -10,7 +10,7 @@ class Player(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     height = db.Column(db.String, nullable=False)
-    weight = db.Column(db.Integer, nullable=False)
+    weight = db.Column(db.String, nullable=False)
     team = db.Column(db.String, nullable=False)
     number = db.Column(db.Integer, nullable=False)
     image = db.Column(db.String, nullable=False)
@@ -20,7 +20,6 @@ class Player(db.Model, SerializerMixin):
     position = db.Column(db.String, nullable=False)
     favorite = db.Column(db.Boolean, default=False)
 
-    team_id = db.Column(db.Integer, db.ForeignKey('teams.id'))
 
 #     team = db.relationship('Team', back_populates='players')
 #     stats = db.relationship('PlayerStats', back_populates = 'player')
@@ -35,7 +34,6 @@ class Player(db.Model, SerializerMixin):
             'team': self.team,
             'team_id': self.team_id,
             'number': self.number,
-            'age': self.age,
             'image': self.image,
             'birthday': self.birthday,
             'bio': self.bio,
@@ -132,7 +130,6 @@ class PlayerStats(db.Model, SerializerMixin):
     threepercentage = db.Column(db.Float, nullable=False)
 
     player_id = db.Column(db.Integer, db.ForeignKey('players.id'))
-    team_id = db.Column(db.Integer, db.ForeignKey('teams.id'))
 
     @validates('player_id', 'team_id')
     def validate_id(self, key, value):

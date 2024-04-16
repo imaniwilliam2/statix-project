@@ -55,7 +55,7 @@ if __name__ == '__main__':
                         bio='From Akron, Ohio, LeBron has averaged 27.1 points, 7.5 rebounds, and 7.4 assists in 1,490 regular-season games. LeBron James has played 21 seasons for the Cavaliers, Lakers and Heat.',
                         drafted='2003 Rnd 1, Pick 1 by CLE',
                         position='Small Forward',
-                        team_id=1)
+                        )
         
 
         player2 = Player(name="D'Angelo Russell",
@@ -68,7 +68,7 @@ if __name__ == '__main__':
                         bio="From Louisville, Kentucky, D'Angelo Russel has averaged 17.8 points, 3.4 rebounds, and 5.8 assists in 571 regular-season games. D'Angelo has played 9 seasons for 4 teams including the Lakers and Timberwolves.",
                         drafted='2015 Rnd 1, Pick 2 by LAL',
                         position='Point Guard',
-                        team_id=1)
+                        )
         
         db.session.add_all([player1, player2])
         db.session.commit() 
