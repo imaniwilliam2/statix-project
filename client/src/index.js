@@ -4,7 +4,7 @@ import App from "./components/App";
 import ErrorPage from "./components/ErrorPage";
 import Home from "./components/Home";
 import PlayersList from "./components/PlayersList"
-import Teams from "./components/Teams"
+import TeamsList from "./components/TeamsList"
 import MyTeam from "./components/MyTeam";
 
 
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/teams",
-                element: <Teams />
+                element: <TeamsList />
             },
             {
                 path:"/my-team",

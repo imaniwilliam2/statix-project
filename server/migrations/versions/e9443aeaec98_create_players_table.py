@@ -1,8 +1,8 @@
 """create players table
 
-Revision ID: 3ee452a12298
-Revises: 
-Create Date: 2024-04-12 15:04:48.659326
+Revision ID: e9443aeaec98
+Revises: 7e948018c1ac
+Create Date: 2024-04-15 12:46:44.837296
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3ee452a12298'
-down_revision = None
+revision = 'e9443aeaec98'
+down_revision = '7e948018c1ac'
 branch_labels = None
 depends_on = None
 
@@ -31,6 +31,8 @@ def upgrade():
     sa.Column('bio', sa.String(), nullable=False),
     sa.Column('drafted', sa.String(), nullable=False),
     sa.Column('position', sa.String(), nullable=False),
+    sa.Column('team_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['team_id'], ['teams.id'], name=op.f('fk_players_team_id_teams')),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

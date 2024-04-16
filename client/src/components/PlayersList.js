@@ -4,10 +4,10 @@ import Player from "./Player"
 
 function PlayersList(){
 
-    const {players} = useOutletContext()
+    const {players, deletePlayer} = useOutletContext()
 
     const playerComponents = players.map(player => {
-        return <Player key={player.id} player={player}/>
+        return <Player key={player.id} player={player} deletePlayer={deletePlayer} players={players}/>
     })
     return (
         <ul>{playerComponents}</ul>
