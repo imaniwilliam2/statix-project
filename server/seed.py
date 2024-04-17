@@ -8,7 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, Team, Player, PlayerStats, TeamStats
+from models import db, Team, Player, PlayerStats, TeamStats, PlayerTeam
 
 if __name__ == '__main__':
     fake = Faker()
@@ -104,6 +104,15 @@ if __name__ == '__main__':
         db.session.add_all([team_stats1])
         db.session.commit()
 
+        team_players1 = PlayerTeam(player_id=1,
+                                   team_id=1,
+                                   role="Small Forward"
+                            
+        )
+
+        db.session.add(team_players1)
+        db.session.commit()
+        
 
         # Seed code goes here! 
         print("Completed seeding!")

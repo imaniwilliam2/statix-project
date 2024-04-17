@@ -36,7 +36,14 @@ class Player(db.Model, SerializerMixin):
             'bio': self.bio,
             'drafted': self.drafted,
             'position': self.position,
-            'favorite': self.favorite
+            'favorite': self.favorite,
+            'teams': [team.serialize_simple_with_players() for team in self.teams]
+        }
+    
+    def serialize_simple(self):
+        return {
+            'id': self.id,
+            'name': self.name
         }
 
     
@@ -59,6 +66,7 @@ class Team(db.Model, SerializerMixin):
 
 
     stats = db.relationship('TeamStats')
+    players = db.relationship('Player', secondary='player_teams')
 
 
     @property
@@ -75,8 +83,22 @@ class Team(db.Model, SerializerMixin):
             'image': self.image,
             'coach': self.coach,
             'favorite': self.favorite,
-            'players': [player.serialize for player in self.players]
+            'players': [player.serialize_simple() for player in self.players]
         }
+    
+    def serialize_simple(self):
+        return {
+            'id': self.id,
+            'name': self.name
+        }
+    
+    def serialize_simple_with_players(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'players': [player.serialize_simple() for player in self.players]
+        }
+
 
 
 
@@ -192,5 +214,19 @@ class MyTeam(db.Model, SerializerMixin):
             'drafted': self.drafted,
             'position': self.position,
             'favorite': self.favorite
+        }
+    
+class PlayerTeam(db.Model, SerializerMixin):
+    __tablename__ = 'player_teams'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    player_id = db.Column( db.Integer, db.ForeignKey('players.id'))
+    team_id = db.Column(db.Integer, db.ForeignKey('teams.id'))
+    role = db.Column(db.String) 
+
+    @property
+    def serialize(self):
+        return{
+            'role': self.role
         }
 

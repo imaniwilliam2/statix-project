@@ -242,13 +242,16 @@ api.add_resource(TeamStatsByTeamId, '/teams/<int:team_id>/stats')
 
 
 
+class TeamPlayers(Resource):
+    def get(self, team_id):
+        team = Team.query.get(team_id)
+        if team:
+            players = [player.to_dict() for player in team.players]
+            return players, 200
+        else:
+            return {"error": "Team not found"}, 404
 
-
-
-
-
-
-
+api.add_resource(TeamPlayers, '/teams/<int:team_id>/players')
 
 
 
