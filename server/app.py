@@ -9,7 +9,7 @@ from flask_restful import Resource
 # Local imports
 from config import app, db, api
 # Add your model imports
-from models import Team, Player, MyTeam
+from models import Team, Player, MyTeam, PlayerStats
 
 
 # Views go here!
@@ -56,6 +56,14 @@ api.add_resource(AllTeams, '/teams')
 
 
 class PlayerByID(Resource):
+    def get(self, id):
+        response_dict = Player.query.filter_by(id=id).first().to_dict()
+        response = make_response(
+            response_dict, 
+            200
+        )
+        return response
+    
     def delete(self, id):
         player = db.session.get(Player, id)
 
@@ -195,6 +203,20 @@ class MyTeamPlayerByID(Resource):
         
 
 api.add_resource(MyTeamPlayerByID, '/my-team/<int:id>')
+
+class PlayerStatsResource(Resource):
+    def get(self, player_id):
+        player_stats = PlayerStats.query.filter_by(player_id=player_id).first()
+
+        if player_stats:
+
+            return player_stats.to_dict(), 200
+        
+        else:
+            return {"error": "Player stats not found"}, 404
+
+# Register the resource with the Flask-RESTful API
+api.add_resource(PlayerStatsResource, '/players/<int:player_id>/stats')
 
 
 

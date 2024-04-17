@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import PlayerStats from "./PlayerStats";
 
 
-function Player({player, deletePlayer, players, addToMyTeam}){
+function Player({player, deletePlayer, addToMyTeam}){
 
     const [favorite, setFavorite] = useState(player.favorite)
+    const [showPlayerStats, setShowPlayerStats] = useState(false)
 
     const navigate = useNavigate()
 
@@ -41,13 +44,21 @@ function Player({player, deletePlayer, players, addToMyTeam}){
         navigate('/my-team')
     }
 
+    function togglePlayerStats() {
+        setShowPlayerStats(!showPlayerStats); // Toggle visibility
+    }
+
     return (
         <div>
             <img src={player.image} alt={player.name}/>
-            <h1>{player.name}</h1>
+            <h2><Link to={`/players/${player.id}`}>{player.name}</Link></h2>
             {likeButton}
-            <button className="delete-button" onClick={handleDeleteButton}>Delete Player</button>
-            <button className="add-button" onClick={handleAddToTeam}>Add To My Team</button>
+            <button className="delete-button" onClick={handleDeleteButton}>X</button>
+            <button className="add-button" onClick={handleAddToTeam}>Draft To My Team</button>
+            <button onClick={togglePlayerStats}>
+                {showPlayerStats ? "Hide Stats" : "Show Stats"}
+            </button>
+            {showPlayerStats && <PlayerStats playerId={player.id} />}
         </div>
     )
 }

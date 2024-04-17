@@ -15,6 +15,8 @@ import { createRoot } from "react-dom/client";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NewPlayerForm from "./components/NewPlayerForm";
+import PlayerStats from "./components/PlayerStats";
+import PlayerInfo from "./components/PlayerInfo";
 
 
 
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
             {
                 path: "/players-form",
                 element: <NewPlayerForm />
+            },
+            {
+                path: "/players/:id/stats",
+                element: <PlayerStats />
+            },
+            {
+                path: "/players/:id",
+                element: <PlayerInfo />
             }
         ]
     }
