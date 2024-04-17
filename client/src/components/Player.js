@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
-function Player({player, deletePlayer, players}){
+function Player({player, deletePlayer, players, addToMyTeam}){
 
     const [favorite, setFavorite] = useState(player.favorite)
+
+    const navigate = useNavigate()
+
 
     function toggleHeart() {
         console.log(player)
@@ -18,7 +22,7 @@ function Player({player, deletePlayer, players}){
         })
         .then(res => res.json())
         .then(data => {
-            setFavorite(players, data);
+            setFavorite(data.favorite);
         })
 
         setFavorite(!favorite)
@@ -32,12 +36,18 @@ function Player({player, deletePlayer, players}){
         deletePlayer(player.id)
     }
 
+    function handleAddToTeam() {
+        addToMyTeam(player)
+        navigate('/my-team')
+    }
+
     return (
         <div>
             <img src={player.image} alt={player.name}/>
             <h1>{player.name}</h1>
             {likeButton}
             <button className="delete-button" onClick={handleDeleteButton}>Delete Player</button>
+            <button className="add-button" onClick={handleAddToTeam}>Add To My Team</button>
         </div>
     )
 }

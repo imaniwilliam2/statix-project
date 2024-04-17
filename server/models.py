@@ -20,7 +20,7 @@ class Player(db.Model, SerializerMixin):
     position = db.Column(db.String, nullable=False)
     favorite = db.Column(db.Boolean, default=False)
 
-    stats = db.relationship('PlayerStats', back_populates = 'player')
+    stats = db.relationship('PlayerStats')
 
     @property
     def serialize(self):
@@ -30,7 +30,6 @@ class Player(db.Model, SerializerMixin):
             'height': self.height,
             'weight': self.weight,
             'team': self.team,
-            'team_id': self.team_id,
             'number': self.number,
             'image': self.image,
             'birthday': self.birthday,
@@ -40,14 +39,6 @@ class Player(db.Model, SerializerMixin):
             'favorite': self.favorite
         }
 
-
-    @validates('team_id')
-    def validate_id(self, key, value):
-        if not value:
-            raise ValueError(f"Player must have a team id!")
-        else:
-            return value
-        
     
 
 
@@ -89,7 +80,6 @@ class Team(db.Model, SerializerMixin):
 
 
 
-
 class TeamStats(db.Model, SerializerMixin):
     __tablename__ = 'teamstats'
 
@@ -103,7 +93,7 @@ class TeamStats(db.Model, SerializerMixin):
 
     team_id = db.Column(db.Integer, db.ForeignKey('teams.id'))
 
-    teams = db.relationship("Team", back_populates = "stats")
+    team = db.relationship("Team", back_populates = "stats")
 
     @property
     def serialize(self):
@@ -143,8 +133,6 @@ class PlayerStats(db.Model, SerializerMixin):
 
     player_id = db.Column(db.Integer, db.ForeignKey('players.id'))
 
-    players = db.relationship("Player", back_populates = "stats")
-
     @property
     def serialize(self):
         return {
@@ -163,9 +151,46 @@ class PlayerStats(db.Model, SerializerMixin):
         }
 
 
-    @validates('player_id', 'team_id')
+    @validates('player_id')
     def validate_id(self, key, value):
         if not value:
             raise ValueError(f"Player stat must have a team and player id!")
         else:
             return value
+        
+        
+class MyTeam(db.Model, SerializerMixin):
+    __tablename__ = 'myteam'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    height = db.Column(db.String)
+    weight = db.Column(db.String)
+    team = db.Column(db.String)
+    number = db.Column(db.Integer)
+    image = db.Column(db.String)
+    birthday = db.Column(db.String)
+    bio = db.Column(db.String)
+    drafted = db.Column(db.String)
+    position = db.Column(db.String)
+    favorite = db.Column(db.Boolean, default=False)
+
+
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'height': self.height,
+            'weight': self.weight,
+            'team': self.team,
+            'number': self.number,
+            'image': self.image,
+            'birthday': self.birthday,
+            'bio': self.bio,
+            'drafted': self.drafted,
+            'position': self.position,
+            'favorite': self.favorite
+        }
+

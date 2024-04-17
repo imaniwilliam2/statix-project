@@ -16,6 +16,8 @@ if __name__ == '__main__':
 
         Player.query.delete()
         Team.query.delete()
+        # TeamStats.query.delete()
+        # PlayerStats.query.delete()
 
         print("Starting seed...")
 
@@ -72,6 +74,23 @@ if __name__ == '__main__':
         
         db.session.add_all([player1, player2])
         db.session.commit() 
+
+        # player_stats1 = PlayerStats(
+        #                             gp=71,
+        #                             minpg=35.3,
+        #                             rebpg=7.3,
+        #                             ppg=25.7,
+        #                             apg=8.3,
+        #                             spg=1.3,
+        #                             bpg=0.5,
+        #                             tpg=3.5,
+        #                             fgpercentage=54.0,
+        #                             threepercentage=41.0,
+        #                             player_id=1
+        #                             )
+        
+        # db.session.add_all([player_stats1])
+        # db.session.commit()
 
 
 

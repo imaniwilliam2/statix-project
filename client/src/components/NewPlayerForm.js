@@ -13,8 +13,7 @@ function NewPlayerForm(){
         birthday: "",
         bio: "",
         drafted: "",
-        position: "",
-        favorite: false
+        position: ""
     })
 
     const {addPlayer} = useOutletContext()
@@ -39,8 +38,7 @@ function NewPlayerForm(){
         birthday: "",
         bio: "",
         drafted: "",
-        position: "",
-        favorite: false 
+        position: ""
         })
         navigate('/players')
     }
