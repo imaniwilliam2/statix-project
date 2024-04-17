@@ -17,6 +17,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NewPlayerForm from "./components/NewPlayerForm";
 import PlayerStats from "./components/PlayerStats";
 import PlayerInfo from "./components/PlayerInfo";
+import TeamStats from "./components/TeamStats";
+import TeamInfo from "./components/TeamInfo";
+
+
 
 
 
@@ -54,6 +58,14 @@ const router = createBrowserRouter([
             {
                 path: "/players/:id",
                 element: <PlayerInfo />
+            },
+            {
+                path:"/teams/:id/stats",
+                element: <TeamStats />
+            },
+            {
+                path: "/teams/:id",
+                element: <TeamInfo />
             }
         ]
     }

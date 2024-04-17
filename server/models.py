@@ -58,7 +58,7 @@ class Team(db.Model, SerializerMixin):
     favorite = db.Column(db.Boolean, default=False)
 
 
-    stats = db.relationship('TeamStats', back_populates = 'team')
+    stats = db.relationship('TeamStats')
 
 
     @property
@@ -93,7 +93,7 @@ class TeamStats(db.Model, SerializerMixin):
 
     team_id = db.Column(db.Integer, db.ForeignKey('teams.id'))
 
-    team = db.relationship("Team", back_populates = "stats")
+    
 
     @property
     def serialize(self):

@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import TeamStats from "./TeamStats";
 
 
 function Team({team}){
 
     const [favorite, setFavorite] = useState(team.favorite)
-
+    const [showTeamStats, setShowTeamStats] = useState(false);
 
     function toggleHeart() {
         console.log(team)
@@ -27,11 +29,18 @@ function Team({team}){
 
     const likeButton = favorite ? <button className="like-button" onClick={toggleHeart}>❤️</button> : <button className="like-button" onClick={toggleHeart}>♡</button> ;
 
+    function toggleTeamStats() {
+        setShowTeamStats(!showTeamStats); // Toggle visibility
+    }
 
     return (
         <div>
             <img src={team.image} alt={team.name}/>
-            <h1>{team.name}</h1> {likeButton}
+            <h2><Link to={`/teams/${team.id}`}>{team.name}</Link></h2> {likeButton}
+            <button onClick={toggleTeamStats}>
+                {showTeamStats ? "Hide Stats" : "Show Stats"} 
+                </button>
+            {showTeamStats && <TeamStats teamId={team.id} />}
         </div>
     )
 }
