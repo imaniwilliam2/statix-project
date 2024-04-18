@@ -1,4 +1,4 @@
-# Static
+# Statix
 
 ## About
 
@@ -24,7 +24,7 @@ To run the applications server, Run python app.py in your terminal from the serv
 cd server
 python app.py
 ```
-To run the applications frontend, Run npm start in your terminal from the client directory.
+To run the applications frontend, in a separate terminal, run npm start from the client directory.
 ```
 cd client
 npm start
