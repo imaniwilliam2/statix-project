@@ -28,9 +28,9 @@ function PlayersList(){
     })
     return (
         <>
-            <Link className="form" to={"/players-form"}>Add A Player</Link>
             <Search updateSearch={updateSearch} searchPlayers={searchPlayers}/>
-            <ul>{playerComponents}</ul>
+            <Link className="form" to={"/players-form"}>Add A Player</Link>
+            <ul className="players">{playerComponents}</ul>
         </>
     )
 }

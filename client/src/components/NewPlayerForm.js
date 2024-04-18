@@ -44,9 +44,9 @@ function NewPlayerForm(){
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="player-form" onSubmit={handleSubmit}>
             <h1>Add A Player</h1>
-            <input onChange={updateForm} type="text" name="name" placeholder="Player Name" value={form.name} required/>
+            <input onChange={updateForm} type="text" name="name" placeholder="Name" value={form.name} required/>
             <input onChange={updateForm} type="text" name="height" placeholder="Height" value={form.height} required/>
             <input onChange={updateForm} type="text" name="weight" placeholder="Weight" value={form.weight} required/>
             <input onChange={updateForm} type="text" name="team" placeholder="Team" value={form.team} required/>
@@ -56,7 +56,7 @@ function NewPlayerForm(){
             <input onChange={updateForm} type="text" name="bio" placeholder="Bio" value={form.bio} required/>
             <input onChange={updateForm} type="text" name="drafted" placeholder="Drafted" value={form.drafted} required/>
             <input onChange={updateForm} type="text" name="position" placeholder="Position" value={form.position} required/>
-            <input type="submit" value="Add Player"/>
+            <button className="form-button" type="submit">Add Player</button>
         </form>
     )
 

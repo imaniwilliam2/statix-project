@@ -1,5 +1,3 @@
-// PlayerInfo.js
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 
@@ -19,20 +17,24 @@ function PlayerInfo() {
             })
             .then(data => setPlayer(data))
             .catch(error => console.error("Error fetching player data:", error));
-    }, []); 
+    }, [id]); 
 
     if (!player) {
         return <div>Loading player information...</div>;
     }
 
     return (
-        <div>
+        <div className="player-info">
             <img src={player.image} alt={player.name} />
             <h2>{player.name}</h2>
             <p>Height: {player.height}</p>
-            <p>Weight: {player.weight}</p>
-            <p>Team: {player.team}</p>
-            {/* Add more player information as needed */}
+            <p>Weight: {player.weight}lb</p>
+            <p>Number: #{player.number}</p>
+            <p>Birthday: {player.birthday}</p>
+            <p>Drafted: {player.drafted}</p>
+            <p>Position: {player.position}</p>
+            <p>Bio: {player.bio}</p>
+
         </div>
     );
 }

@@ -1,4 +1,3 @@
-// TeamInfo.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -17,10 +16,7 @@ function TeamInfo() {
             })
             .then(data => setTeam(data))
             .catch(error => console.error('Error fetching team data:', error));
-    }, [id]);
-
-
-    useEffect(() => {
+        
         fetch(`/teams/${id}/players`)
             .then(response => {
                 if (response.ok) {
@@ -32,16 +28,13 @@ function TeamInfo() {
             .catch(error => console.error('Error fetching team players:', error));
     }, [id]);
 
-    if (players.length === 0) {
-        return <div>No players found for this team.</div>;
-    }
-
     if (!team) {
         return <div>Loading team information...</div>;
     }
 
     return (
-        <div>
+        <div className='team-info'>
+            <img src={team.image} alt={team.name} />
             <h1>{team.name}</h1>
             <p>Origin: {team.origin}</p>
             <p>Conference: {team.conference}</p>
@@ -50,16 +43,22 @@ function TeamInfo() {
             <p>Championships: {team.championships}</p>
             <p>Titles: {team.titles}</p>
             <p>Coach: {team.coach}</p>
-            {/* Add more team information as needed */}
+            
             <div>
-                <h1>Players of the Team</h1>
-                <ul>
-                    {players.map(player => (
-                        <li key={player.id}>
-                            <strong>{player.name}</strong> - {player.position}
-                        </li>
-                    ))}
-                </ul>
+                {players.length === 0 ? (
+                    <div></div>
+                ) : (
+                    <div>
+                        <h1 className='team-players-info-h1' >Team Players</h1>
+                    <ul className='team-players-info'>
+                        {players.map(player => (
+                            <li key={player.id}>
+                                <strong>{player.name}</strong> 
+                            </li>
+                        ))}
+                    </ul>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -1,5 +1,3 @@
-// In a new component file (e.g., PlayerStats.js)
-
 import React, { useState, useEffect } from 'react';
 
 function PlayerStats({ playerId }) {
@@ -22,9 +20,18 @@ function PlayerStats({ playerId }) {
     }
 
     return (
-        <div>
+        <div className='player-stats'>
             <ul>
-                <h2>GP: {playerStats.gp}</h2><li>MPG: {playerStats.minpg}</li><li>RPG: {playerStats.rebpg}</li>
+                <li>GP: {playerStats.gp}</li>
+                <li>MPG: {playerStats.minpg}</li>
+                <li>RPG: {playerStats.rebpg}</li>
+                <li>PPG: {playerStats.ppg}</li>
+                <li>APG: {playerStats.apg}</li>
+                <li>SPG: {playerStats.spg}</li>
+                <li>BPG: {playerStats.bpg}</li>
+                <li>TPG: {playerStats.tpg}</li>
+                <li>FG%: {playerStats.fgpercentage}</li>
+                <li>3P%: {playerStats.threepercentage}</li>
                 {/* Add more stats as needed */}
             </ul>
         </div>

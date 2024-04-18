@@ -24,10 +24,10 @@ function TeamsList(){
         return <Team key={team.id} team={team}/>
     })
     return (
-        <>
+        < div className="teams">
             <SearchTeams updateSearch={updateSearch} searchTeams={searchTeams}/>
-            <ul>{teamsComponents}</ul>
-        </>
+            <ul className="teams-list">{teamsComponents}</ul>
+        </div>
     )
 }
 

@@ -34,13 +34,16 @@ function Team({team}){
     }
 
     return (
-        <div>
+        <div className="team">
             <img src={team.image} alt={team.name}/>
-            <h2><Link to={`/teams/${team.id}`}>{team.name}</Link></h2> {likeButton}
+            <h2><Link to={`/teams/${team.id}`}>{team.name}</Link></h2> 
+            <div className="team-buttons">
+            {likeButton}
             <button onClick={toggleTeamStats}>
                 {showTeamStats ? "Hide Stats" : "Show Stats"} 
                 </button>
             {showTeamStats && <TeamStats teamId={team.id} />}
+            </div>
         </div>
     )
 }

@@ -4,11 +4,11 @@ function searchTeams({searchTeams, updateSearch}) {
     
     return (
         <div className="searchbar">
-            <label htmlFor="search">Search Players:</label>
+            <label htmlFor="search">Search Teams:</label>
             <input
             type="text"
             id="search"
-            placeholder="Type name to find sneaker..."
+            placeholder="TYPE NAME TO FIND TEAM..."
             value={searchTeams} 
             onChange={updateSearch}
             />

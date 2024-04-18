@@ -49,9 +49,10 @@ function Player({player, deletePlayer, addToMyTeam}){
     }
 
     return (
-        <div>
+        <div className="player">
             <img src={player.image} alt={player.name}/>
-            <h2><Link to={`/players/${player.id}`}>{player.name}</Link></h2>
+            <h2 className="player-h2"><Link to={`/players/${player.id}`}>{player.name}</Link></h2>
+            <div className="player-buttons">
             {likeButton}
             <button className="delete-button" onClick={handleDeleteButton}>X</button>
             <button className="add-button" onClick={handleAddToTeam}>Draft To My Team</button>
@@ -59,6 +60,7 @@ function Player({player, deletePlayer, addToMyTeam}){
                 {showPlayerStats ? "Hide Stats" : "Show Stats"}
             </button>
             {showPlayerStats && <PlayerStats playerId={player.id} />}
+            </div>
         </div>
     )
 }

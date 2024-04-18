@@ -8,7 +8,7 @@ function Search({searchPlayers, updateSearch}) {
             <input
             type="text"
             id="search"
-            placeholder="Type name to find sneaker..."
+            placeholder="TYPE NAME TO FIND PLAYER..."
             value={searchPlayers} 
             onChange={updateSearch}
             />

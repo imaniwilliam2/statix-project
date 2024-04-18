@@ -1,4 +1,3 @@
-// TeamStats.js
 import React, { useState, useEffect } from 'react';
 
 function TeamStats({ teamId }) {
@@ -22,12 +21,14 @@ function TeamStats({ teamId }) {
     }
 
     return (
-        <div>
-            
+        <div className='team-stats'>
                 <ul>
                     <li>Wins: {teamStats.wins}</li>
                     <li>Loses: {teamStats.loses}</li>
-                    {/* Add more stats as needed */}
+                    <li>Conference Standing: {teamStats.cstanding}</li>
+                    <li>Points: {teamStats.points}</li>
+                    <li>Assists: {teamStats.assists}</li>
+                    <li>Rebounds: {teamStats.rebounds}</li>
                 </ul>
             
         </div>

@@ -20,7 +20,7 @@ function MyTeam(){
                     <li className="my-team-players" key={player.id}>
                         <img className="my-team-img" src={player.image} alt={player.name}/>
                         <h1>{player.name}</h1>
-                        <button className="remove-button" onClick={() => handleDelete(player.id)}>Cut</button>
+                        <button className="cut-button" onClick={() => handleDelete(player.id)}>Cut</button>
                     </li>
                 ))}
             </ul>

@@ -52,6 +52,31 @@ class AllTeams(Resource):
         rb = [team.to_dict() for team in Team.query.all()]
         return make_response(rb, 200)
     
+    def post(self):
+        try:
+            new_team = Team(
+            name= request.json.get('name'),
+            orign= request.json.get('orign'),
+            conference= request.json.get('conference'),
+            regularR= request.json.get('regularR'),
+            playoffR= request.json.get('playoffR'),
+            championships= request.json.get('championships'),
+            titles= request.json.get('titles'),
+            image= request.json.get('image'),
+            coach= request.json.get('coach'),
+            )
+            db.session.add(new_team)
+            db.session.commit()
+            response_body = new_team.to_dict()
+            return make_response(response_body, 201)
+        except:
+            response_body = {
+                "error": "Team must have completed all inputs!"
+            }
+            return make_response(response_body, 400)
+        
+    
+    
 api.add_resource(AllTeams, '/teams')
 
 
