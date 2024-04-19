@@ -172,13 +172,6 @@ class PlayerStats(db.Model, SerializerMixin):
             'player_id': self.player_id
         }
 
-
-    @validates('player_id')
-    def validate_id(self, key, value):
-        if not value:
-            raise ValueError(f"Player stat must have a team and player id!")
-        else:
-            return value
         
         
 class MyTeam(db.Model, SerializerMixin):
