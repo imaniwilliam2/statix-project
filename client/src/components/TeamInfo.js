@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+
 
 function TeamInfo() {
     const [team, setTeam] = useState(null);
@@ -34,7 +35,7 @@ function TeamInfo() {
 
     return (
         <div className='team-info'>
-            <img src={team.image} alt={team.name} />
+            <img className='mx-auto' src={team.image} alt={team.name} />
             <h1>{team.name}</h1>
             <p>Origin: {team.origin}</p>
             <p>Conference: {team.conference}</p>
@@ -53,7 +54,7 @@ function TeamInfo() {
                     <ul className='team-players-info'>
                         {players.map(player => (
                             <li key={player.id}>
-                                <strong>{player.name}</strong> 
+                                <Link to={`/players/${player.id}`}> <strong>{player.name}</strong> </Link>
                             </li>
                         ))}
                     </ul>

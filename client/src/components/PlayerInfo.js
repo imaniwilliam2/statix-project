@@ -25,7 +25,7 @@ function PlayerInfo() {
 
     return (
         <div className="player-info">
-            <img src={player.image} alt={player.name} />
+            <img className="mx-auto" src={player.image} alt={player.name} />
             <h2>{player.name}</h2>
             <p>Height: {player.height}</p>
             <p>Weight: {player.weight}lb</p>
@@ -33,7 +33,7 @@ function PlayerInfo() {
             <p>Birthday: {player.birthday}</p>
             <p>Drafted: {player.drafted}</p>
             <p>Position: {player.position}</p>
-            <p>Bio: {player.bio}</p>
+            <p className="text-center max-w-lg mx-auto">Bio: {player.bio}</p>
 
         </div>
     );

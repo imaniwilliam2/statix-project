@@ -3,6 +3,9 @@
   src: url('/fonts/Blacklisted.ttf');
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* Root */
 * {
   margin: 0;
@@ -51,11 +54,11 @@ nav a {
 
 /* Form  */
 .form{
-  font-size: 5vh;
+  font-size: 3vh;
   font-family: 'myFont';
   -webkit-text-stroke: 1px gold;
   position: relative;
-  left: 1120px;
+  left: 1550px;
   top: -47px
 }
 
@@ -298,7 +301,7 @@ ul{
 }
 
 .team-players-info {
-  margin-left: 400px;
+  margin-left: 600px;
   list-style: none;
   padding: 0;
   text-align: center;

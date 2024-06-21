@@ -30,7 +30,7 @@ function Team({team}){
     const likeButton = favorite ? <button className="like-button" onClick={toggleHeart}>❤️</button> : <button className="like-button" onClick={toggleHeart}>♡</button> ;
 
     function toggleTeamStats() {
-        setShowTeamStats(!showTeamStats); // Toggle visibility
+        setShowTeamStats(!showTeamStats); 
     }
 
     return (
